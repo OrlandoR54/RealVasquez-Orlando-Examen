@@ -59,10 +59,13 @@ public class IngresoLibro extends HttpServlet {
 		Libro libro = new Libro(nombre, isbn, numPag, null);
 		
 		CapituloDAO capituloDAO = DAOFactory.getDAOFactory().getCapituloDAO();
-		Capitulo capitulo = new Capitulo(numCap, titulo, libro, null);
+		Capitulo capitulo = new Capitulo(numCap, titulo, libro);
 		
 		AutorDAO autorDAO = DAOFactory.getDAOFactory().getAutorDAO();
 		Autor autor = new Autor("Juan Martin", "eeuu", capitulo);
+		
+		autor.setCapitulo(capitulo);
+		autorDAO.create(autor);
 		
 		
 		if (libroDAO.create(libro) == true) {
