@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import ec.edu.ups.dao.GenericDAO;
 import ec.edu.ups.entidades.Autor;
@@ -39,20 +40,37 @@ public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID>{
 	@Override
 	public T read(ID id) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Prueba de SQL" + em.find(persistentClass, id));
+		return em.find(persistentClass, id);
 	}
 
 	@Override
 	public List<T> find() {
 		// TODO Auto-generated method stub
-		return null;
+		em.getTransaction().begin();
+		List<T> lista = null;
+		try {
+			javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+			cq.select(cq.from(persistentClass));
+			lista = em.createQuery(cq).getResultList();
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lista;
 	}
 
 	@Override
 	public Libro findLibro(String correo, String pass) {
-		// TODO Auto-generated method stub
 		return null;
-	}
+		// TODO Auto-generated method stub
+	/*	Query nativeQuery = em.createNativeQuery("SELECT * FROM Libro where correo = ? AND password= ?",
+				Usuario.class);
+		nativeQuery.setParameter(1, correo);
+		nativeQuery.setParameter(2, pass);
+
+		return (Usuario) nativeQuery.getSingleResult();
+	*/}
 
 	@Override
 	public List<Libro> findByIdOrMail(String context) {
