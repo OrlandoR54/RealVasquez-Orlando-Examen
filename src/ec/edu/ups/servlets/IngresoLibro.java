@@ -1,6 +1,7 @@
 package ec.edu.ups.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -46,6 +47,8 @@ public class IngresoLibro extends HttpServlet {
 		numPagString = request.getParameter("numPaginas");
 		int numPag = Integer.parseInt(numPagString);
 		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 		
 		String numCap = request.getParameter("numero");
 		String titulo = request.getParameter("titulo");
@@ -83,14 +86,7 @@ public class IngresoLibro extends HttpServlet {
 			//getServletContext().getRequestDispatcher("/Public/HTML/incioSesion.html").forward(request, response);
 		}else{
             System.out.println("Usuario No Creado");
-            /*out.println("<script type='text/javascript'>");
-        	out.println("alert('No se pudo registrar, faltan datos');");
-        	out.println("location='/Practica-de-laboratorio-01-Servlets-JSP-y-JDBC/Public/HTML/inicioSesion.html';");
-        	out.println("</script>");
-        	
-        	out.println("<meta http-equiv='refresh' content='3;URL=index.html'>");//redirije despues de 3 segundos
-        	out.println("<p style='color:red;'>User or password incorrect!</p>");
-        	*/
+            
             response.sendRedirect("JSP/index.jsp");
         }
 		
