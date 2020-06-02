@@ -32,12 +32,11 @@ public class Capitulo implements Serializable {
 		super();
 	}
 
-	public Capitulo(String numero, String titulo, Libro libro, Autor autor) {
+	public Capitulo(String numero, String titulo, Libro libro) {
 		super();
 		this.numero = numero;
 		this.titulo = titulo;
 		this.libro = libro;
-		this.autor = autor;
 	}
 
 	public int getId() {
