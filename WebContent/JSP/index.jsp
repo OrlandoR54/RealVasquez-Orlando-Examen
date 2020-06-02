@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
+	<form action="../IngresoLibro" method="get">
 		<label class="lbl-num" for="nombreLib">Nombre: </label> 
 		<input type="text" id="nombreLib" name="nombreLib" placeholder="Nombre del Libro"> 
 		<label class="lbl-num" for="isbn">ISBN: </label> 
@@ -31,6 +32,7 @@
 					<option value="cod4">4</option>
 				</select>
 			</div>
+		</div>
 
 			<button type="submit">Registrar</button>
 	</form>
