@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ec.edu.ups.dao.AutorDAO;
+import ec.edu.ups.dao.CapituloDAO;
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.dao.LibroDAO;
-import ec.edu.ups.dao.UsuarioDAO;
-import ec.edu.ups.entidad.Usuario;
 import ec.edu.ups.entidades.Autor;
 import ec.edu.ups.entidades.Capitulo;
 import ec.edu.ups.entidades.Libro;
@@ -54,13 +53,44 @@ public class IngresoLibro extends HttpServlet {
 		String autorStr = request.getParameter("autor");
 		int autorID = Integer.parseInt(autorStr);
 				
-		AutorDAO autorDAO = DAOFactory.getDAOFactory().getAutorDAO();
-		Autor autor = new Autor("Juan Martin", "eeuu", capitulo);
+		System.out.println(nombre);
 		
 		LibroDAO libroDAO = DAOFactory.getDAOFactory().getLibroDAO();
 		Libro libro = new Libro(nombre, isbn, numPag, null);
 		
+		CapituloDAO capituloDAO = DAOFactory.getDAOFactory().getCapituloDAO();
 		Capitulo capitulo = new Capitulo(numCap, titulo, libro, null);
+		
+		AutorDAO autorDAO = DAOFactory.getDAOFactory().getAutorDAO();
+		Autor autor = new Autor("Juan Martin", "eeuu", capitulo);
+		
+		
+		if (libroDAO.create(libro) == true) {
+            //response.sendRedirect("Sesio");
+            
+            System.out.println("Usuario Creado");
+           /*out.println("<script type='text/javascript'>");
+        	out.println("alert('Usuario creado');");
+        	out.println("location='/Practica-de-laboratorio-01-Servlets-JSP-y-JDBC/Public/HTML/inicioSesion.html';");
+        	out.println("</script>");*/
+            //request.getRequestDispatcher("Public/HTML/inicioSesion.html").forward(request, response);  
+            response.sendRedirect("JSP/index.jsp"); 
+            
+           
+			//getServletContext().getRequestDispatcher("/Public/HTML/incioSesion.html").forward(request, response);
+		}else{
+            System.out.println("Usuario No Creado");
+            /*out.println("<script type='text/javascript'>");
+        	out.println("alert('No se pudo registrar, faltan datos');");
+        	out.println("location='/Practica-de-laboratorio-01-Servlets-JSP-y-JDBC/Public/HTML/inicioSesion.html';");
+        	out.println("</script>");
+        	
+        	out.println("<meta http-equiv='refresh' content='3;URL=index.html'>");//redirije despues de 3 segundos
+        	out.println("<p style='color:red;'>User or password incorrect!</p>");
+        	*/
+            response.sendRedirect("JSP/index.jsp");
+        }
+		
 	}
 
 	/**
