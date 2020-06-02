@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="../IngresoLibro" method="get">
+	<form action="/IngresoLibro" method="get">
 		<label class="lbl-num" for="nombreLib">Nombre: </label> 
 		<input type="text" id="nombreLib" name="nombreLib" placeholder="Nombre del Libro"> 
 		<label class="lbl-num" for="isbn">ISBN: </label> 
