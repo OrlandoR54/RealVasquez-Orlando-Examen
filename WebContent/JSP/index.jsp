@@ -48,12 +48,7 @@
 				</tr>
 				</thead>
 				<tbody>
-				<c:set var="bTelefono" value="${requestScope['telefono']}" />
-					<tr>
-						<td><c:out value="${bTelefono.numero}" /></td>
-						<td><c:out value="${bTelefono.tipo}" /></td>
-						<td><c:out value="${bTelefono.operadora}" /></td>
-					</tr>
+				
 		
 				</tbody>
 		</table>
